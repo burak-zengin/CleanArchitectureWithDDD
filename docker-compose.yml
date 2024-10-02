@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  database:
+    container_name: PostgreSql
+    hostname: postgres
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "P@ssw0rd!"
+      POSTGRES_DB: Products
+    ports:
+      - "5432:5432"
+  presentation:
+    container_name: Presentation
+    image: ${DOCKER_REGISTRY-}presentation
+    build:
+      context: .
+      dockerfile: src/Presentation/Dockerfile
